@@ -18,5 +18,10 @@ module.exports = {
       type: "javascript/auto",
     })
     return config
+  },
+  refs: {
+    '@chakra-ui/react': {
+      disable: true,
+    },
   }
 }
