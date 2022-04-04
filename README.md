@@ -17,7 +17,7 @@ I personally enjoy writing components with styled-components. However, I discove
 ## Dev
 
 ```sh
-npm run dev
+npm run storybook
 ```
 
 ## Deployment
