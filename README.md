@@ -25,7 +25,11 @@ npx create-next-app -e https://github.com/bluenex/bluenex-storybook
 # optional, cleanup components and stories
 cd scripts
 ./new-proj-cleanup.sh
- ```
+```
+
+## Update favicon
+
+Get an icon file (prefer .SVG) and uses that file to generate favicons from this website https://realfavicongenerator.net/. The path to keep favicon is `public/favicon` and the path to refer to favicon files is `/favicon`.
 
 ## Dev
 
