@@ -1,4 +1,3 @@
-import { FaBars, FaTimes, FaAngleDown, FaAngleRight } from "react-icons/fa";
 import {
   Avatar,
   Box,
@@ -22,314 +21,211 @@ import {
   useColorModeValue,
   useDisclosure,
 } from "@chakra-ui/react";
-// import NextLink from "next/link";
-// import { useRouter } from "next/router";
+import NextLink from "next/link";
+import { useRouter } from "next/router";
+import { FaAngleDown, FaAngleRight, FaBars, FaTimes } from "react-icons/fa";
+
+// -- TYPES
+export interface SubnavItem {
+  label: string;
+  href: string;
+}
 
 export interface NavItem {
   label: string;
-  subLabel?: string;
-  children?: Array<NavItem>;
   href?: string;
+  subnav?: Array<SubnavItem>;
 }
 
-interface WithSubnavigationProps {
-  onClickLogin: () => void;
-  onClickLogout: () => void;
-  isLoggedIn: boolean;
-  isLoadingUserStatus: boolean;
-}
-
-const BRAND: string = "BRAND";
-const SIGN_IN_LABEL: string = "Login";
-const NAV_ITEMS: Array<NavItem> = [
-  {
-    label: "Menu1",
-    href: "/menu1",
-  },
-  {
-    label: "Menu2",
-    href: "/menu2",
-  },
-  {
-    label: "About",
-    href: "/about",
-  },
-];
-
-const mainColor = "blue";
-
-// dummy component, in reality this should be import from next/link
-const NextLink = ({
-  href,
-  children,
-  passHref,
-}: {
-  href: string;
-  children: any;
-  passHref?: boolean;
-}) => {
-  if (!passHref) {
-    return children;
-  }
-
-  if (href) {
-    return children;
-  }
-
-  return null;
-};
-
-export default function WithSubnavigation({
-  onClickLogin,
-  onClickLogout,
-  isLoggedIn,
-  isLoadingUserStatus,
-}: WithSubnavigationProps) {
-  // const router = useRouter();
-  const router = {
-    push: (path: string) =>
-      console.log("clicking navbar link navigating to →", path),
+export interface NavbarProps {
+  nav: Array<NavItem>;
+  brand: {
+    type: "text" | "image";
+    text: string;
+    image?: string;
   };
+  color?: string;
+  loginProp?: {
+    loginButtonLabel?: string;
+    logoutButtonLabel?: string;
+    isLoggedIn?: boolean;
+    isLoadingUserStatus?: boolean;
+    onClickLogin?: () => void;
+    onClickLogout?: () => void;
+    loginMenu?: Array<SubnavItem>;
+  };
+}
 
-  const { isOpen, onToggle } = useDisclosure();
-  const signInButtonVariant = useBreakpointValue({
-    base: "link",
-    md: "outline",
-  });
-
+// -- COMPONENTS
+const DesktopNav = ({ nav, color }: { nav: Array<NavItem>; color: string }) => {
   return (
-    <Box
-      backgroundColor={"white"}
-      borderBottom={1}
-      borderStyle={"solid"}
-      borderColor={useColorModeValue("gray.200", "gray.900")}
-    >
-      <Flex
-        bg={useColorModeValue("white", "gray.800")}
-        color={useColorModeValue("gray.600", "white")}
-        minH={"60px"}
-        py={{ base: 2 }}
-        px={{ base: 4 }}
-        align={"center"}
-        width={{ md: "container.md", lg: "container.lg" }}
-        margin={"auto"}
-      >
-        <Flex
-          flex={{ base: 1, md: "auto" }}
-          ml={{ base: -2 }}
-          display={{ base: "flex", md: "none" }}
-        >
-          <IconButton
-            onClick={onToggle}
-            icon={isOpen ? <FaTimes /> : <FaBars />}
-            variant={"ghost"}
-            aria-label={"Toggle Navigation"}
-          />
-        </Flex>
-        <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
-          <NextLink href="/" passHref>
-            <Link _hover={{ textDecorationStyle: "none" }}>
-              {/* <Image
-                src="/hatai-ai-logo.svg"
-                title={BRAND}
-                alt={BRAND}
-                height={8}
-              /> */}
-              <Text
-                as="b"
-                fontSize={{ base: "2xl", md: "3xl" }}
-                textAlign={useBreakpointValue({ base: "center", md: "left" })}
-                fontFamily={"heading"}
-                color={`${mainColor}.400`}
-              >
-                {BRAND}
-              </Text>
-            </Link>
-          </NextLink>
-
-          <Flex display={{ base: "none", md: "flex" }} ml={10}>
-            <DesktopNav />
-          </Flex>
-        </Flex>
-
-        <Stack
-          flex={{ base: 1, md: 0 }}
-          justify={"flex-end"}
-          direction={"row"}
-          spacing={6}
-        >
-          {isLoadingUserStatus ? null : !isLoggedIn ? (
-            <Button
-              fontSize={"sm"}
-              fontWeight={600}
-              colorScheme={mainColor}
-              variant={signInButtonVariant}
-              onClick={() => {
-                onClickLogin();
+    <Stack direction="row" spacing={4} alignItems="center">
+      {nav.map((navItem) => (
+        <Box key={navItem.label}>
+          {!navItem.subnav ? (
+            <Link
+              href={navItem.href ?? "#"}
+              fontSize="sm"
+              fontWeight={500}
+              color="gray.600"
+              p={2}
+              _hover={{
+                textDecoration: "none",
+                color: "gray.800",
               }}
             >
-              {SIGN_IN_LABEL}
-            </Button>
+              {navItem.label}
+            </Link>
           ) : (
-            <Menu>
-              <MenuButton>
-                <Avatar size={"xs"} />
-              </MenuButton>
-              <MenuList
-                position={"absolute"}
-                right={-6}
-                width="150px"
-                minW="150px"
-              >
-                <MenuItem
-                  justifyContent={"center"}
-                  onClick={() => router.push("/user")}
+            <Popover trigger="hover" placement="bottom-start">
+              <PopoverTrigger>
+                <Link
+                  fontSize="sm"
+                  fontWeight={500}
+                  color="gray.600"
+                  p={2}
+                  _hover={{
+                    textDecoration: "none",
+                    color: "gray.800",
+                  }}
                 >
-                  ข้อมูลการใช้งาน
-                </MenuItem>
-                <MenuItem justifyContent={"center"} onClick={onClickLogout}>
-                  ออกจากระบบ
-                </MenuItem>
-              </MenuList>
-            </Menu>
-          )}
-        </Stack>
-      </Flex>
+                  {navItem.label}
+                </Link>
+              </PopoverTrigger>
 
-      <Collapse in={isOpen} animateOpacity>
-        <MobileNav />
-      </Collapse>
-    </Box>
-  );
-}
-
-const DesktopNav = () => {
-  const linkColor = useColorModeValue("gray.600", "gray.200");
-  const linkHoverColor = useColorModeValue("gray.800", "white");
-  const popoverContentBgColor = useColorModeValue("white", "gray.800");
-
-  return (
-    <Stack direction={"row"} spacing={4} alignItems="center">
-      {NAV_ITEMS.map((navItem) => (
-        <Box key={navItem.label}>
-          {navItem.href ? (
-            <NextLink href={navItem.href ?? "#"} passHref>
-              <Link
+              <PopoverContent
+                w="fit-content"
+                maxW={60}
+                bg="white"
+                border="none"
+                rounded="xl"
+                boxShadow="lg"
                 p={2}
-                fontSize={"sm"}
-                fontWeight={500}
-                color={linkColor}
-                _hover={{
-                  textDecoration: "none",
-                  color: linkHoverColor,
-                }}
               >
-                {navItem.label}
-              </Link>
-            </NextLink>
-          ) : null}
+                <Stack>
+                  {navItem.subnav.map((subnavItem) => (
+                    <DesktopSubNav
+                      key={subnavItem.label}
+                      label={subnavItem.label}
+                      href={subnavItem.href}
+                      color={color}
+                    />
+                  ))}
+                </Stack>
+              </PopoverContent>
+            </Popover>
+          )}
         </Box>
       ))}
     </Stack>
   );
 };
 
-const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
+const DesktopSubNav = ({
+  label,
+  href,
+  color,
+}: SubnavItem & { color: string }) => {
   return (
     <Link
-      href={href || "#"}
-      role={"group"}
-      display={"block"}
-      p={2}
-      rounded={"md"}
-      _hover={{ bg: useColorModeValue(`${mainColor}.50`, "gray.900") }}
+      href={href ?? "#"}
+      role="group"
+      display="block"
+      rounded="md"
+      px={3}
+      _hover={{ bg: `${color}.50` }}
     >
-      <Stack direction={"row"} align={"center"}>
-        <Box>
+      <Stack direction="row" align="center">
+        <Box mr={2}>
           <Text
-            transition={"all .3s ease"}
-            _groupHover={{ color: `${mainColor}.400` }}
+            transition="all .3s ease"
             fontWeight={500}
+            _groupHover={{ color: `${color}.400` }}
           >
             {label}
           </Text>
-          <Text fontSize={"sm"}>{subLabel}</Text>
         </Box>
         <Flex
-          transition={"all .3s ease"}
-          transform={"translateX(-10px)"}
+          flex={1}
+          justify="flex-end"
+          align="center"
+          transition="all .3s ease"
+          transform="translateX(-10px)"
           opacity={0}
           _groupHover={{ opacity: "100%", transform: "translateX(0)" }}
-          justify={"flex-end"}
-          align={"center"}
-          flex={1}
         >
-          <Icon color={`${mainColor}.400`} w={5} h={5} as={FaAngleRight} />
+          <Icon color={`${color}.400`} w={5} h={5} as={FaAngleRight} />
         </Flex>
       </Stack>
     </Link>
   );
 };
 
-const MobileNav = () => {
+const MobileNav = ({ nav }: { nav: Array<NavItem> }) => {
   return (
     <Stack
       bg={useColorModeValue("white", "gray.800")}
       p={4}
       display={{ md: "none" }}
     >
-      {NAV_ITEMS.map((navItem) => (
-        <MobileNavItem key={navItem.label} {...navItem} />
+      {nav.map((navItem) => (
+        <MobileNavItem
+          key={navItem.label}
+          label={navItem.label}
+          href={navItem.href}
+          subnav={navItem.subnav}
+        />
       ))}
     </Stack>
   );
 };
 
-const MobileNavItem = ({ label, children, href }: NavItem) => {
+const MobileNavItem = ({ label, href, subnav }: NavItem) => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
-    <Stack spacing={4} onClick={children && onToggle}>
+    <Stack spacing={4} onClick={subnav && onToggle}>
       <Flex
-        py={2}
         as={Link}
         href={href ?? "#"}
-        justify={"space-between"}
-        align={"center"}
+        justify="space-between"
+        align="center"
+        py={2}
         _hover={{
           textDecoration: "none",
         }}
       >
-        <Text
-          fontWeight={600}
-          color={useColorModeValue("gray.600", "gray.200")}
-        >
+        <Text fontWeight={600} color="gray.600">
           {label}
         </Text>
-        {children && (
+        {subnav && (
           <Icon
             as={FaAngleDown}
-            transition={"all .25s ease-in-out"}
-            transform={isOpen ? "rotate(180deg)" : ""}
             w={6}
             h={6}
+            transition="all .25s ease-in-out"
+            transform={isOpen ? "rotate(180deg)" : ""}
           />
         )}
       </Flex>
 
-      <Collapse in={isOpen} animateOpacity style={{ marginTop: "0!important" }}>
+      <Collapse
+        in={isOpen}
+        animateOpacity
+        style={{ marginTop: "0 !important" }}
+      >
         <Stack
+          align="start"
+          borderLeft={1}
+          borderStyle="solid"
+          borderColor="gray.200"
           mt={2}
           pl={4}
-          borderLeft={1}
-          borderStyle={"solid"}
-          borderColor={useColorModeValue("gray.200", "gray.700")}
-          align={"start"}
         >
-          {children &&
-            children.map((child) => (
-              <Link key={child.label} py={2} href={child.href || "#"}>
-                {child.label}
+          {subnav &&
+            subnav.map((subnavItem) => (
+              <Link key={subnavItem.label} py={2} href={subnavItem.href ?? "#"}>
+                {subnavItem.label}
               </Link>
             ))}
         </Stack>
@@ -337,3 +233,155 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
     </Stack>
   );
 };
+
+// -- MAIN
+/**
+ * @description copied and revised from https://chakra-templates.dev/navigation/navbar
+ *
+ * TODO: check if href is internal or external
+ * - if internal, wrap in NextLink
+ * - else use external prop of Chakra's Link
+ */
+const NavBar = ({
+  nav,
+  brand = { type: "text", text: "SiteTitle" },
+  color = "blue",
+  loginProp = {
+    loginButtonLabel: "Login",
+    logoutButtonLabel: "Logout",
+    isLoggedIn: false,
+    isLoadingUserStatus: false,
+    onClickLogin: () => {},
+    onClickLogout: () => {},
+  },
+}: NavbarProps) => {
+  const router = useRouter();
+
+  const { isOpen, onToggle } = useDisclosure();
+
+  const signinButtonVariant = useBreakpointValue({
+    base: "link",
+    md: "outline",
+  });
+
+  const {
+    loginButtonLabel = "Login",
+    logoutButtonLabel = "Logout",
+    isLoggedIn = false,
+    isLoadingUserStatus = false,
+    onClickLogin = () => {},
+    onClickLogout = () => {},
+    loginMenu,
+  } = loginProp;
+
+  return (
+    <Box borderBottom={1} borderStyle="solid" borderColor="gray.200">
+      <Flex
+        align="center"
+        minH="60px"
+        width={{ md: "container.md", lg: "container.lg" }}
+        color="gray.600"
+        px={4}
+        py={2}
+        margin="auto"
+      >
+        {/* hamburger button */}
+        <Flex flex={1} display={{ base: "flex", md: "none" }} ml={-2}>
+          <IconButton
+            onClick={onToggle}
+            icon={isOpen ? <FaTimes /> : <FaBars />}
+            variant="ghost"
+            aria-label="Toggle Navigation"
+          />
+        </Flex>
+
+        {/* mobile navs */}
+        <Collapse in={isOpen} animateOpacity>
+          <MobileNav nav={nav} />
+        </Collapse>
+
+        {/* brand and desktop navs */}
+        <Flex flex={1} justify={{ base: "center", md: "start" }}>
+          <NextLink href="/" passHref>
+            <Link _hover={{ textDecorationStyle: "none" }}>
+              {brand.type === "text" ? (
+                <Text
+                  as="b"
+                  fontSize={{ base: "2xl", md: "3xl" }}
+                  textAlign={useBreakpointValue({ base: "center", md: "left" })}
+                  fontFamily="heading"
+                  color={`${color}.400`}
+                >
+                  {brand.text}
+                </Text>
+              ) : (
+                <Image
+                  src={brand.image}
+                  title={brand.text}
+                  alt={brand.text}
+                  height={8}
+                />
+              )}
+            </Link>
+          </NextLink>
+
+          {/* desktop navs */}
+          <Flex display={{ base: "none", md: "flex" }} ml={10}>
+            <DesktopNav nav={nav} color={color} />
+          </Flex>
+        </Flex>
+
+        {/* right button menu */}
+        <Stack
+          flex={{ base: 1, md: 0 }}
+          justify="flex-end"
+          direction="row"
+          spacing={6}
+        >
+          {isLoadingUserStatus ? null : !isLoggedIn ? (
+            <Button
+              fontSize="sm"
+              fontWeight={600}
+              colorScheme={color}
+              variant={signinButtonVariant}
+              onClick={() => {
+                onClickLogin();
+              }}
+            >
+              {loginButtonLabel}
+            </Button>
+          ) : (
+            <Menu>
+              <MenuButton>
+                <Avatar size="xs" />
+              </MenuButton>
+              <MenuList
+                position="absolute"
+                right={-6}
+                width="150px"
+                minW="150px"
+              >
+                {loginMenu
+                  ? loginMenu.map((item) => (
+                      <MenuItem
+                        key={item.href}
+                        justifyContent="center"
+                        onClick={() => router.push(item.href)}
+                      >
+                        {item.label}
+                      </MenuItem>
+                    ))
+                  : null}
+                <MenuItem justifyContent="center" onClick={onClickLogout}>
+                  {logoutButtonLabel}
+                </MenuItem>
+              </MenuList>
+            </Menu>
+          )}
+        </Stack>
+      </Flex>
+    </Box>
+  );
+};
+
+export default NavBar;
