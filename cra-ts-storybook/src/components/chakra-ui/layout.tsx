@@ -32,14 +32,23 @@ const Layout = ({ children }: LayoutProps) => {
     >
       {/* <LoginModal isOpen={isOpenLoginModal} onClose={onCloseLoginModal} /> */}
       <Navbar
-        // onClickLogin={onOpenLoginModal}
-        // onClickLogout={logOut}
-        // isLoadingUserStatus={loading}
-        // isLoggedIn={!!user}
-        onClickLogin={() => {}}
-        onClickLogout={() => {}}
-        isLoadingUserStatus={false}
-        isLoggedIn={false}
+        nav={[{ label: "เกี่ยวกับเรา", href: "/about" }]}
+        brand={{
+          type: "text",
+          text: "bn-story",
+        }}
+        loginProp={{
+          // onClickLogin={onOpenLoginModal}
+          // onClickLogout={logOut}
+          // isLoadingUserStatus={loading}
+          // isLoggedIn={!!user}
+          onClickLogin: () => {},
+          onClickLogout: () => {},
+          isLoadingUserStatus: false,
+          isLoggedIn: false,
+          loginButtonLabel: "เข้าสู่ระบบ",
+          logoutButtonLabel: "ออกจากระบบ",
+        }}
       />
       <Container maxW="container.lg">{children}</Container>
       <Spacer />

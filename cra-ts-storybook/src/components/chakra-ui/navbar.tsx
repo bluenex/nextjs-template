@@ -263,6 +263,10 @@ const NavBar = ({
     base: "link",
     md: "outline",
   });
+  const brandAlign = useBreakpointValue({
+    base: "center" as "center",
+    md: "left" as "left",
+  })!;
 
   const {
     loginButtonLabel = "Login",
@@ -308,7 +312,7 @@ const NavBar = ({
                 <Text
                   as="b"
                   fontSize={{ base: "2xl", md: "3xl" }}
-                  textAlign={useBreakpointValue({ base: "center", md: "left" })}
+                  textAlign={brandAlign}
                   fontFamily="heading"
                   color={`${color}.400`}
                 >
