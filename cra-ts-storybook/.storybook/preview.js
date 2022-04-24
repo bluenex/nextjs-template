@@ -1,3 +1,5 @@
+const componentsOrder = ['Navbar', 'Footer', 'Layout', 'Dropzone', 'ProbGauge']
+
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
@@ -11,4 +13,9 @@ export const parameters = {
       hidden: true,
     },
   },
+  options: {
+    storySort: {
+      order: ['chakra-ui', componentsOrder, 'tailwind', componentsOrder, 'example'],
+    },
+  }
 };
