@@ -105,7 +105,6 @@ const DesktopNav = ({ nav, color }: { nav: Array<NavItem>; color: string }) => {
                 <Stack>
                   {navItem.subnav.map((subnavItem) => (
                     <DesktopSubNav
-                      key={subnavItem.label}
                       label={subnavItem.label}
                       href={subnavItem.href}
                       color={color}
@@ -163,14 +162,9 @@ const DesktopSubNav = ({
 
 const MobileNav = ({ nav }: { nav: Array<NavItem> }) => {
   return (
-    <Stack
-      bg={useColorModeValue("white", "gray.800")}
-      p={4}
-      display={{ md: "none" }}
-    >
+    <Stack bg="white" p={4} display={{ md: "none" }}>
       {nav.map((navItem) => (
         <MobileNavItem
-          key={navItem.label}
           label={navItem.label}
           href={navItem.href}
           subnav={navItem.subnav}
@@ -187,7 +181,7 @@ const MobileNavItem = ({ label, href, subnav }: NavItem) => {
     <Stack spacing={4} onClick={subnav && onToggle}>
       <Flex
         as={Link}
-        href={href ?? "#"}
+        href={href ?? undefined}
         justify="space-between"
         align="center"
         py={2}
@@ -209,11 +203,7 @@ const MobileNavItem = ({ label, href, subnav }: NavItem) => {
         )}
       </Flex>
 
-      <Collapse
-        in={isOpen}
-        animateOpacity
-        style={{ marginTop: "0 !important" }}
-      >
+      <Collapse in={isOpen} animateOpacity>
         <Stack
           align="start"
           borderLeft={1}
@@ -299,11 +289,6 @@ const NavBar = ({
           />
         </Flex>
 
-        {/* mobile navs */}
-        <Collapse in={isOpen} animateOpacity>
-          <MobileNav nav={nav} />
-        </Collapse>
-
         {/* brand and desktop navs */}
         <Flex flex={1} justify={{ base: "center", md: "start" }}>
           <NextLink href="/" passHref>
@@ -356,34 +341,41 @@ const NavBar = ({
             </Button>
           ) : (
             <Menu>
-              <MenuButton>
-                <Avatar size="xs" />
-              </MenuButton>
-              <MenuList
-                position="absolute"
-                right={-6}
-                width="150px"
-                minW="150px"
-              >
-                {loginMenu
-                  ? loginMenu.map((item) => (
-                      <MenuItem
-                        key={item.href}
-                        justifyContent="center"
-                        onClick={() => router.push(item.href)}
-                      >
-                        {item.label}
-                      </MenuItem>
-                    ))
-                  : null}
-                <MenuItem justifyContent="center" onClick={onClickLogout}>
-                  {logoutButtonLabel}
-                </MenuItem>
-              </MenuList>
+              <>
+                <MenuButton>
+                  <Avatar size="xs" />
+                </MenuButton>
+                <MenuList
+                  position="absolute"
+                  right={-6}
+                  width="150px"
+                  minW="150px"
+                >
+                  {loginMenu
+                    ? loginMenu.map((item) => (
+                        <MenuItem
+                          key={item.href}
+                          justifyContent="center"
+                          onClick={() => router.push(item.href)}
+                        >
+                          {item.label}
+                        </MenuItem>
+                      ))
+                    : null}
+                  <MenuItem justifyContent="center" onClick={onClickLogout}>
+                    {logoutButtonLabel}
+                  </MenuItem>
+                </MenuList>
+              </>
             </Menu>
           )}
         </Stack>
       </Flex>
+
+      {/* mobile navs */}
+      <Collapse in={isOpen} animateOpacity>
+        <MobileNav nav={nav} />
+      </Collapse>
     </Box>
   );
 };
