@@ -1,1 +1,0 @@
-# bluenex-nextjs-chakra-ui
