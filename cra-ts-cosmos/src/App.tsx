@@ -22,15 +22,14 @@ function App() {
   return (
     <VStack direction="column" gap={2} py={8}>
       <Heading as="h1" size="2xl">
-        Personal Storybook
+        Personal Components Collection
       </Heading>
       <Text>
         Check <Code>README.md</Code>!
       </Text>
       <StyledBox>
         <Text mb={4}>
-          This Storybook repository has 3 style libraries installed as listed
-          below
+          This repository has 3 style libraries installed as listed below
         </Text>
         <ul className="list-disc list-inside mb-4">
           <li>

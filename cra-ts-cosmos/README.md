@@ -1,4 +1,4 @@
-# bluenex-cosmos
+# bluenex-cra-ts-cosmos
 
 ## Tracking issues
 
@@ -7,7 +7,7 @@
 ```sh
 $ npm run cosmos
 
-> cra-ts-storybook@0.1.0 cosmos
+> cra-ts-cosmos@0.1.0 cosmos
 > cosmos
 
 [Cosmos] Using cosmos config found at cosmos.config.json
@@ -18,7 +18,7 @@ $ npm run cosmos
 webpack built 8605713533632b3455dd in 7170ms
 WARNING in ./node_modules/@base2/pretty-print-object/dist/index.js
 Module Warning (from ./node_modules/source-map-loader/dist/cjs.js):
-Failed to parse source map from '/bluenex-storybook/cra-ts-storybook/node_modules/@base2/pretty-print-object/src/index.ts' file: Error: ENOENT: no such file or directory, open '/bluenex-storybook/cra-ts-storybook/node_modules/@base2/pretty-print-object/src/index.ts'
+Failed to parse source map from '/bluenex-frontend-collection/cra-ts-cosmos/node_modules/@base2/pretty-print-object/src/index.ts' file: Error: ENOENT: no such file or directory, open '/bluenex-frontend-collection/cra-ts-cosmos/node_modules/@base2/pretty-print-object/src/index.ts'
 
 WARNING in DefinePlugin
 Conflicting values for 'process.env'
