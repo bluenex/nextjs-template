@@ -1,19 +1,43 @@
-# bluenex-starter-kit
+# bluenex-frontend-collection
 
-This is a repository to keep potentially reusable templates/components that I have implemented. I have no skill in design at all so some of them might be dull. Also, it may or may not follow the best practice, but consistency will be my priority.
+This is a repository to collect components I have implemented in React using Chakra-UI and Tailwind CSS. I personally enjoy writing components with styled-components. However, I discovered Chakra UI recently and think it provides an intuitive styled system that helps me a lot. I also have an interest in Tailwind CSS for a while but doesn't have much experience with it yet.
 
-I personally enjoy writing components with styled-components. However, I discovered Chakra UI recently and think it provides an intuitive styled system that helps me a lot. So I am personally attached to these 2 libraries and so that I include them in the storybook. I also have an interest in Tailwind CSS for a while but currently doesn't have much experience with it yet, still add it to the template anyway.
+The components showcase uses [React Cosmos](https://reactcosmos.org/) to display components in a Storybook-like style. I tried Storybook and faced multiple issues during the setup for Chakra-UI and Tailwind CSS. After a couple of days I found React Cosmos and very happy with its simplicity.
 
-This repository contains templates for a new project with Next.js + TypeScript + (Chakra UI / styled-components / Tailwind CSS).
+This repository also contains templates for easy startup of a new project. Here is a current repository structure:
+
+```sh
+├── cra-ts-cosmos
+├── nextjs-ts-chakra-ui
+└── nextjs-tailwind
+```
 
 ## Requirements
 
-- Node 16+
+- Node 16+ with NPM 8+
 
 ## Stacks
 
-- Next.js + TypeScript
-- Chakra UI / styled-components / Tailwind CSS
+- Next.js [+ TypeScript]
+- Chakra UI / Tailwind CSS
+
+## Dev
+
+To run the development server for Cosmos:
+
+```sh
+npm run cosmos
+```
+
+## Deployment
+
+To export Cosmos as a static site:
+
+```sh
+npm run cosmos:export
+```
+
+The Cosmos is deployed on Vercel and can be redirected from my personal website [https://bluenex.dev/frontend-collection](https://bluenex.dev/frontend-collection).
 
 ## Create a new project
 
@@ -27,20 +51,6 @@ cd scripts
 ./new-proj-cleanup.sh
 ```
 
-## Update favicon
+### Update favicon
 
 Get an icon file (prefer .SVG) and uses that file to generate favicons from this website https://realfavicongenerator.net/. The path to keep favicon is `public/favicon` and the path to refer to favicon files is `/favicon`.
-
-## Dev
-
-To run the development server for Next.js:
-
-```sh
-npm run dev
-```
-
-For storybook please check [its README](./stories/README.md).
-
-## Deployment
-
-The Storybook is deployed on Vercel and can be redirected from my personal website https://bluenex.dev/storybook.
