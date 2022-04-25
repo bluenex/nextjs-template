@@ -37,19 +37,20 @@ To export Cosmos as a static site:
 npm run cosmos:export
 ```
 
-The Cosmos is deployed on Vercel and can be redirected from my personal website [https://bluenex.dev/frontend-collection](https://bluenex.dev/frontend-collection).
+The Cosmos is deployed on GitHub Pages so it can be accessed from my personal website [https://bluenex.dev/frontend-collection](https://bluenex.dev/frontend-collection).
 
 ## Create a new project
 
 To create a new project from this template, run the following command:
 
 ```sh
-npx create-next-app -e https://github.com/bluenex/bluenex-storybook
-
-# optional, cleanup components and stories
-cd scripts
-./new-proj-cleanup.sh
+npx create-next-app -e https://github.com/bluenex/frontend-collection --example-path <base-template>
 ```
+
+Where available `base-template`s are:
+
+- `nextjs-ts-chakra-ui`
+- `nextjs-tailwind`
 
 ### Update favicon
 
