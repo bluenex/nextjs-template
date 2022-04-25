@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Avatar,
   Box,
@@ -18,11 +19,8 @@ import {
   Stack,
   Text,
   useBreakpointValue,
-  useColorModeValue,
   useDisclosure,
 } from "@chakra-ui/react";
-import NextLink from "next/link";
-import { useRouter } from "next/router";
 import { FaAngleDown, FaAngleRight, FaBars, FaTimes } from "react-icons/fa";
 
 // -- TYPES
@@ -105,6 +103,7 @@ const DesktopNav = ({ nav, color }: { nav: Array<NavItem>; color: string }) => {
                 <Stack>
                   {navItem.subnav.map((subnavItem) => (
                     <DesktopSubNav
+                      key={subnavItem.label}
                       label={subnavItem.label}
                       href={subnavItem.href}
                       color={color}
@@ -165,6 +164,7 @@ const MobileNav = ({ nav }: { nav: Array<NavItem> }) => {
     <Stack bg="white" p={4} display={{ md: "none" }}>
       {nav.map((navItem) => (
         <MobileNavItem
+          key={navItem.label}
           label={navItem.label}
           href={navItem.href}
           subnav={navItem.subnav}
@@ -245,7 +245,7 @@ const NavBar = ({
     onClickLogout: () => {},
   },
 }: NavbarProps) => {
-  const router = useRouter();
+  // const router = useRouter();
 
   const { isOpen, onToggle } = useDisclosure();
 
@@ -291,28 +291,27 @@ const NavBar = ({
 
         {/* brand and desktop navs */}
         <Flex flex={1} justify={{ base: "center", md: "start" }}>
-          <NextLink href="/" passHref>
-            <Link _hover={{ textDecorationStyle: "none" }}>
-              {brand.type === "text" ? (
-                <Text
-                  as="b"
-                  fontSize={{ base: "2xl", md: "3xl" }}
-                  textAlign={brandAlign}
-                  fontFamily="heading"
-                  color={`${color}.400`}
-                >
-                  {brand.text}
-                </Text>
-              ) : (
-                <Image
-                  src={brand.image}
-                  title={brand.text}
-                  alt={brand.text}
-                  height={8}
-                />
-              )}
-            </Link>
-          </NextLink>
+          {/* in Next.JS, this Link should be wrapped by NextLink and passHref */}
+          <Link _hover={{ textDecorationStyle: "none" }}>
+            {brand.type === "text" ? (
+              <Text
+                as="b"
+                fontSize={{ base: "2xl", md: "3xl" }}
+                textAlign={brandAlign}
+                fontFamily="heading"
+                color={`${color}.400`}
+              >
+                {brand.text}
+              </Text>
+            ) : (
+              <Image
+                src={brand.image}
+                title={brand.text}
+                alt={brand.text}
+                height={8}
+              />
+            )}
+          </Link>
 
           {/* desktop navs */}
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
@@ -340,33 +339,36 @@ const NavBar = ({
               {loginButtonLabel}
             </Button>
           ) : (
+            // @ts-ignore
             <Menu>
-              <>
-                <MenuButton>
-                  <Avatar size="xs" />
-                </MenuButton>
-                <MenuList
-                  position="absolute"
-                  right={-6}
-                  width="150px"
-                  minW="150px"
-                >
-                  {loginMenu
-                    ? loginMenu.map((item) => (
-                        <MenuItem
-                          key={item.href}
-                          justifyContent="center"
-                          onClick={() => router.push(item.href)}
-                        >
-                          {item.label}
-                        </MenuItem>
-                      ))
-                    : null}
-                  <MenuItem justifyContent="center" onClick={onClickLogout}>
-                    {logoutButtonLabel}
-                  </MenuItem>
-                </MenuList>
-              </>
+              <MenuButton>
+                <Avatar size="xs" />
+              </MenuButton>
+              <MenuList
+                position="absolute"
+                right={-6}
+                width="150px"
+                minW="150px"
+              >
+                {loginMenu
+                  ? loginMenu.map((item) => (
+                      <MenuItem
+                        key={item.href}
+                        justifyContent="center"
+                        onClick={() =>
+                          console.log(
+                            `clicking menu item with href: ${item.href}`
+                          )
+                        }
+                      >
+                        {item.label}
+                      </MenuItem>
+                    ))
+                  : null}
+                <MenuItem justifyContent="center" onClick={onClickLogout}>
+                  {logoutButtonLabel}
+                </MenuItem>
+              </MenuList>
             </Menu>
           )}
         </Stack>

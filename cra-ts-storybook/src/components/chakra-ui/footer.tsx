@@ -1,12 +1,8 @@
+import React from "react";
 import { Box, Button, Container, Text } from "@chakra-ui/react";
-// import { useRouter } from "next/router";
 
 const Footer = () => {
   // const router = useRouter();
-  const router = {
-    push: (path: string) =>
-      console.log("clicking footer link navigating to →", path),
-  };
 
   return (
     <Box w="100%" p={4} bg="blue.100">
@@ -19,7 +15,8 @@ const Footer = () => {
           colorScheme="blue"
           fontSize="sm"
           onClick={() => {
-            router.push("/privacy-policy");
+            console.log("click on button");
+            // router.push("/privacy-policy");
           }}
         >
           นโยบายความเป็นส่วนตัว
