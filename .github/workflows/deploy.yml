@@ -15,9 +15,9 @@ jobs:
         run: |
           npm ci
           npm run cosmos:export
+
       - name: Deploy 🚀
-        working-directory: ./cra-ts-cosmos
         uses: JamesIves/github-pages-deploy-action@v4.3.0
         with:
           branch: gh-pages
-          folder: cosmos-export
+          folder: ./cra-ts-cosmos/cosmos-export
