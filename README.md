@@ -7,9 +7,10 @@ The components showcase uses [React Cosmos](https://reactcosmos.org/) to display
 This repository also contains templates for easy startup of a new project. Here is a current repository structure:
 
 ```sh
+├── README.md
 ├── cra-ts-cosmos
-├── nextjs-ts-chakra-ui
-└── nextjs-tailwind
+├── nextjs-tailwind
+└── nextjs-ts-chakra-ui
 ```
 
 ## Requirements
