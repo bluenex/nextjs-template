@@ -1,6 +1,6 @@
 # bluenex-frontend-collection
 
-This is a repository to collect components I have implemented in React using Chakra-UI and Tailwind CSS. I personally enjoy writing components with styled-components. However, I discovered Chakra UI recently and think it provides an intuitive styled system that helps me a lot. I also have an interest in Tailwind CSS for a while but doesn't have much experience with it yet.
+This is a repository to collect components I have implemented in React using Chakra-UI and Tailwind CSS. I personally enjoy writing components with styled-components. However, I discovered Chakra UI recently and think it provides an intuitive styled system that helps me a lot. I also have an interest in Tailwind CSS for a while but don't have much experience with it yet.
 
 The components showcase uses [React Cosmos](https://reactcosmos.org/) to display components in a Storybook-like style. I tried Storybook and faced multiple issues during the setup for Chakra-UI and Tailwind CSS. After a couple of days I found React Cosmos and very happy with its simplicity.
 
