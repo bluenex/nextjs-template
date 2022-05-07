@@ -10,7 +10,8 @@ This repository also contains templates for easy startup of a new project. Here 
 ├── README.md
 ├── cra-ts-cosmos
 ├── nextjs-tailwind
-└── nextjs-ts-chakra-ui
+├── nextjs-ts-chakra-ui
+└── nextjs-ts-tailwind
 ```
 
 ## Requirements
@@ -52,6 +53,7 @@ Where available `base-template`s are:
 
 - `nextjs-ts-chakra-ui`
 - `nextjs-tailwind`
+- `nextjs-ts-tailwind`
 
 ### Update favicon
 
