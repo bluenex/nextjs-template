@@ -4,3 +4,4 @@ Files in this Refs folder will not be rendered on Cosmos, it is kept here for re
 
 - `genericComponents`
 - `hooks`
+- `modules`
