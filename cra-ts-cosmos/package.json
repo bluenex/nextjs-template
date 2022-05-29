@@ -9,15 +9,7 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^12.1.5",
     "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.4.1",
-    "@types/node": "17.0.23",
-    "@types/react": "17.0.43",
-    "@types/react-dom": "17.0.14",
-    "@types/styled-components": "^5.1.25",
-    "@types/tailwindcss": "^3.0.10",
-    "autoprefixer": "^10.4.5",
     "framer-motion": "^6.3.0",
-    "postcss": "^8.4.12",
     "react": "17.0.2",
     "react-cosmos": "^5.7.2",
     "react-dom": "17.0.2",
@@ -28,7 +20,6 @@
     "remark": "^14.0.2",
     "remark-rehype": "^10.1.0",
     "styled-components": "^5.3.5",
-    "tailwindcss": "^3.0.24",
     "typescript": "^4.6.3",
     "web-vitals": "^2.1.4",
     "webpack": "^5.72.0"
@@ -60,6 +51,16 @@
     ]
   },
   "devDependencies": {
-    "@types/glob": "^7.2.0"
+    "@types/glob": "^7.2.0",
+    "@types/jest": "^27.4.1",
+    "@types/node": "17.0.23",
+    "@types/react": "17.0.43",
+    "@types/react-dom": "17.0.14",
+    "@types/styled-components": "^5.1.25",
+    "@types/tailwindcss": "^3.0.10",
+    "autoprefixer": "^10.4.5",
+    "miragejs": "^0.1.44",
+    "postcss": "^8.4.12",
+    "tailwindcss": "^3.0.24"
   }
 }
