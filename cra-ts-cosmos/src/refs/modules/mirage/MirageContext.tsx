@@ -6,7 +6,7 @@ import {
   useEffect,
   useRef,
 } from "react";
-import { makeServer } from ".";
+import { makeServer } from "./mirage";
 
 // -- CONTEXT
 export const MirageContext = createContext<{
