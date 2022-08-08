@@ -1,7 +1,7 @@
 import "@fontsource/bai-jamjuree";
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import "../styles/globals.css";
+import "../src/styles/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   // prettier-ignore

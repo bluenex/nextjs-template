@@ -2,7 +2,7 @@ import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import "@fontsource/bai-jamjuree";
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import "../styles/globals.css";
+import "../src/styles/globals.css";
 
 const theme = extendTheme({
   fonts: {
