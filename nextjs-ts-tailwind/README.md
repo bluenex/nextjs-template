@@ -1,4 +1,4 @@
-# bluenex-nextjs-ts-tailwind
+# nextjs-ts-tailwind
 
 A bare repository to start a new project with Next.js + TS + Tailwind CSS
 
