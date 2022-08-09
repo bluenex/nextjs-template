@@ -7,6 +7,7 @@ module.exports = {
     extend: {},
   },
   plugins: [
+    require("tailwindcss-debug-screens"),
     require("@tailwindcss/typography"),
     require("@tailwindcss/forms"),
     require("@tailwindcss/line-clamp"),
