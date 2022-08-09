@@ -12,9 +12,9 @@ npx create-next-app -e https://github.com/bluenex/nextjs-template --example-path
 
 Where available `base-template`s are:
 
-- `nextjs-ts-chakra-ui`
-- `nextjs-tailwind`
-- `nextjs-ts-tailwind`
+- `with-ts-chakra-ui`
+- `with-tailwind`
+- `with-ts-tailwind`
 
 ### Update favicon
 

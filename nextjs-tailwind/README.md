@@ -1,4 +1,4 @@
-# nextjs-tailwind
+# with-tailwind
 
 A bare repository to start a new project with Next.js + Tailwind CSS
 

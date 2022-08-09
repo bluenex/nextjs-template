@@ -1,4 +1,4 @@
-# nextjs-ts-chakra-ui
+# with-ts-chakra-ui
 
 A bare repository to start a new project with Next.js + TypeScript + Chakra UI.
 
