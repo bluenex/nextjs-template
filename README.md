@@ -7,7 +7,7 @@ This is a repository to collect nextjs templates that I frequently use.
 To create a new project from this template, run the following command:
 
 ```sh
-npx create-next-app -e https://github.com/bluenex/nextjs-template --example-path <base-template>
+npx create-next-app@latest <project-name> --use-npm --example "https://github.com/bluenex/nextjs-template/tree/main/<base-template>"
 ```
 
 Where available `base-template`s are:
