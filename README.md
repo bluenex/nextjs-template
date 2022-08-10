@@ -15,6 +15,7 @@ Where available `base-template`s are:
 - `with-ts-chakra-ui`
 - `with-tailwind`
 - `with-ts-tailwind`
+- `with-ts-styled-components`
 
 ### Update favicon
 
