@@ -12,10 +12,10 @@ npx create-next-app@latest <project-name> --use-npm --example "https://github.co
 
 Where available `base-template`s are:
 
-- `with-ts-chakra-ui`
 - `with-tailwind`
-- `with-ts-tailwind`
+- `with-ts-chakra-ui`
 - `with-ts-styled-components`
+- `with-ts-tailwind`
 
 ### Update favicon
 
