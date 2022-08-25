@@ -1,0 +1,16 @@
+# Ignore artifacts:
+.next
+public
+dist
+build
+out
+
+# Dependency directories
+node_modules/
+
+# Files
+next-env.d.ts
+next.config.ts
+package-lock.json
+*.lock
+*.env
