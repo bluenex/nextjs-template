@@ -17,6 +17,20 @@ Where available `base-template`s are:
 - `with-ts-styled-components`
 - `with-ts-tailwind`
 
+### Optional useful packages
+
+- `react-icons`
+
+```sh
+npm i react-icons
+```
+
+- `uuid`
+
+```sh
+npm i uuid @types/uuid
+```
+
 ### Update favicon
 
 Get an icon file (prefer .SVG) and uses that file to generate favicons from this website https://realfavicongenerator.net/. The path to keep favicon is `public/favicon` and the path to refer to favicon files is `/favicon`.
