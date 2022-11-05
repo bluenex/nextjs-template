@@ -28,7 +28,8 @@ npm i react-icons
 - `uuid`
 
 ```sh
-npm i uuid @types/uuid
+npm i uuid
+npm i --save-dev @types/uuid
 ```
 
 ### Update favicon
